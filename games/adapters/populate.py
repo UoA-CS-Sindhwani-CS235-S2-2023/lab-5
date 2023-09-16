@@ -78,8 +78,6 @@ def populate_tables(connection):
     # Add games to the repo
     populate_games_table(connection, games)
 
-    #populate_genre_game_table(connection)
-
 
 def populate_publisher_table(connection, publishers: List[Publisher]):
     with connection:
@@ -132,8 +130,4 @@ def populate_genre_game_table(connection, game_key, genre_key):
         query = 'INSERT INTO GAME_GENRE_ASSOC (game_id, genre_id) VALUES (:game_id, :genre_id) ON CONFLICT DO NOTHING'
         cursor.execute(
                 query, {'game_id': game_key, 'genre_id': genre_key})
-
-        # for genre_key in genre_keys:
-        #     query = 'INSERT INTO GAME_GENRE_ASSOC (game_id, genre_id) VALUES (:game_id, :genre_id) ON CONFLICT DO NOTHING'
-        #     cursor.execute(
-        #         query, {'game_id': game_key, 'genre_id': genre_key})
+        
